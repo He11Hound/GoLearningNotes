@@ -1,0 +1,97 @@
+package Constructions
+
+import (
+	"fmt"
+	"time"
+)
+
+func BasicConditionIfExample(number int) {
+	if number > 0 {
+		fmt.Println("Число", number, "положительное")
+	} else if number == 0 {
+		fmt.Println("Число равно 0")
+	} else {
+		fmt.Println("Число", number, "отрицательное")
+	}
+}
+
+func BasicConditionSwitchExample(str string) {
+	switch str {
+	case "yellow":
+		fmt.Println("Выбран жёлтый цвет")
+	case "green":
+		fmt.Println("Выбран зелёный цвет")
+	case "red":
+		fmt.Println("Выбран красный цвет")
+	case "white":
+		fmt.Println("Выбран белый цвет")
+	}
+}
+
+func DeferSimpleExample() {
+	//defer - Ключевое слово, которое откладывает выполнение функции до момента выхода из текущей функции.
+	//Используется для отложенных действий: закрытия файлов, разблокировки мьютексов, освобождения ресурсов.
+
+	fmt.Println("start")
+	defer fmt.Println("middle") // выполнится при выходе из main
+	fmt.Println("end")
+
+	//Стек вызовов defer
+	//Отложенные вызовы попадают в стек.
+	//Выполняются в обратном порядке (LIFO — Last In, First Out).
+
+	//defer fmt.Println("1")
+	//defer fmt.Println("2")
+	//defer fmt.Println("3")
+	//
+	//Вывод
+	//3
+	//2
+	//1
+
+	//Аргументы функции вычисляются сразу в момент объявления defer, а не при выполнении.
+	//
+	//	x := 10
+	//	defer fmt.Println("defer:", x) // значение x захватывается = 10
+	//	x = 20
+	//	fmt.Println("x:", x)
+
+	//Если программа вызывает panic, все defer в стеке всё равно выполняются. Это позволяет «убирать за собой».
+	//defer немного замедляет выполнение функции (в среднем до 2-3 наносекунд на вызов). Для «горячих циклов» лучше не использовать.
+}
+
+func CycleExample() {
+	//В Go для циклов существует всего лишь один оператор обработки цикло: for
+
+	//Управляющие операторы как и в других языках
+	//break - прерывает выполнение цикла
+	//continue - пропускает текущую итерацию, идёт на следующий шаг
+
+}
+
+func SimpleForCycle(number int) {
+	for i := 1; i <= number; i++ {
+		fmt.Println(i)
+	}
+}
+
+func AnalogueWhileCycle(number int) {
+	i := 0
+	for i <= number {
+		fmt.Println(i)
+		i++
+	}
+}
+
+func EndlessCycle() {
+	for {
+		fmt.Println("Шаг цикла")
+		time.Sleep(time.Second)
+	}
+}
+
+func RangeCycle(slice []int) { //используется для перебора массивов, слайсов, строк, мапов, каналов.
+	for index, value := range slice { //Если индекс или значение не нужно пишем _
+		fmt.Println("индекс:", index, "значение:", value) //Мы всегда работаем с копией данных, поэтому если мы хотим изменять данные мы должны либо передавать указатель, либо менять значения по ключу
+	}
+}

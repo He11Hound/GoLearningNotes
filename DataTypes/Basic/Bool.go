@@ -3,7 +3,7 @@ package DataTypes
 import "fmt"
 
 func MakeBool() {
-	var ExampleBool1 bool = true // Полная запись
+	var ExampleBool1 bool = true // Полная запись - переменная занимает 1 байт
 	var ExampleBool2 bool        // Короткая запись, опустили значение, будет false (zero value)
 	ExampleBool3 := false        // Короткая запись, тип автоматически bool
 

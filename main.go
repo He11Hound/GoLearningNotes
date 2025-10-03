@@ -1,7 +1,9 @@
 package main
 
-import "learning/DataTypes"
+import (
+	"learning/Constructions"
+)
 
 func main() {
-	DataTypes.MainFunctionsWithFloat()
+	Constructions.DeferSimpleExample()
 }
