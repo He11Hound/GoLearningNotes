@@ -1,9 +1,9 @@
 package main
 
 import (
-	"learning/DataTypes/Pointer"
+	"learning/OOP"
 )
 
 func main() {
-	Pointer.MakePointer()
+	OOP.StructAccessExample()
 }
