@@ -1,9 +1,9 @@
 package main
 
 import (
-	"learning/Constructions"
+	"learning/DataTypes/Pointer"
 )
 
 func main() {
-	Constructions.DeferSimpleExample()
+	Pointer.MakePointer()
 }
