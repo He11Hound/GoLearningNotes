@@ -1,7 +1,7 @@
 package main
 
-import "learning/Variables"
+import "learning/DataTypes"
 
 func main() {
-	Variables.IfVariableMoreThanSize()
+	DataTypes.MainFunctionsWithFloat()
 }
