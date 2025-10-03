@@ -12,6 +12,7 @@ type User struct {
 }
 
 //Структура - логически объединённый набор данных, под какую-то сущность
+//Структура - кастомный тип данных
 
 func MakeNewUser() {
 	var ExampleUser1 User = User{

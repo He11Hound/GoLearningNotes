@@ -1,9 +1,9 @@
 package main
 
 import (
-	"learning/OOP"
+	"learning/Multithreading"
 )
 
 func main() {
-	OOP.StructAccessExample()
+	Multithreading.MakeChannel()
 }
