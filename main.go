@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	Multithreading.MakeChannel()
+	Multithreading.SelectChannelExample()
 }

@@ -3,6 +3,7 @@ package Multithreading
 import (
 	"fmt"
 	"math/rand"
+	"strconv"
 	"time"
 )
 
@@ -16,6 +17,7 @@ import (
 
 func MakeChannel() {
 	var channel chan int = make(chan int) //создание небуферизрованного канала, полная запись
+	defer close(channel)                  //закрытие канала
 	//bufferizedChannel := make(chan int, 10) //создание буферизрованного канала,
 	workers := 3
 	bank := 0
@@ -47,3 +49,38 @@ func MakeChannel() {
 
 //deadlock (взаимная блокировка) - можно получить когда мы пытаемся записать что либо в канал, в котором нет места
 //Утечка каннала - когда мы пытаемся что-то прочитать из канала в который уже ничего не пишется, ошибки не будет, но будет жраться cpu на планироащике рантайма го, так как он будет всё время держать канал в режиме ожидания
+
+//Select {} - конструкция, напоминающия switch, предназначена для работы с нескольким каналами
+//Конструкция предназначена для чтения нескольких канналов, default отрабатывает, когда ничего не отрабатывает
+
+func SelectChannelExample() {
+	intChan := make(chan int)
+	stringChan := make(chan string)
+
+	go func() {
+		i := 1
+		for {
+			intChan <- i
+			i++
+			time.Sleep(1 * time.Second)
+		}
+	}()
+
+	go func() {
+		i := 1
+		for {
+			stringChan <- "hi" + strconv.Itoa(i)
+			i++
+			time.Sleep(3 * time.Second)
+		}
+	}()
+
+	for {
+		select {
+		case str := <-stringChan:
+			fmt.Println(str)
+		case intVal := <-intChan:
+			fmt.Println(intVal)
+		}
+	}
+}
