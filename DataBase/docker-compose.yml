@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # PostgreSQL база данных
+  postgres:
+    image: postgres:15-alpine
+    container_name: go-learning-postgres
+    environment:
+      POSTGRES_DB: go_learning_db
+      POSTGRES_USER: go_user
+      POSTGRES_PASSWORD: go_password
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - go-learning-network
+    restart: unless-stopped
+
+  # Go приложение
+  go-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-learning-app
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: go_learning_db
+      DB_USER: go_user
+      DB_PASSWORD: go_password
+    ports:
+      - "8081:8080"
+    volumes:
+      - .:/app
+    networks:
+      - go-learning-network
+    restart: unless-stopped
+    command: go run web_server.go
+
+volumes:
+  postgres_data:
+
+networks:
+  go-learning-network:
+    driver: bridge
