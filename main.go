@@ -1,7 +1,7 @@
 package main
 
 import (
-	"learning/Generations"
+	"learning/HTTP"
 )
 
 //go:generate go run tools/genconstants.go "Version" "1.2.3" "Name" "myapp" "Title" "My Application"
@@ -9,5 +9,5 @@ import (
 //Команда запускает файл genconstants.go и передаёт параметры
 
 func main() {
-	Generations.ExamplePrintMaxNumber()
+	HTTP.ExampleSimpleHttpServer()
 }

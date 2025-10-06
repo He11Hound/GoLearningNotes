@@ -67,3 +67,5 @@ func (p PersonExample) Greet() string {
 func NewGreeter(name string) Greeter {
 	return PersonExample{Name: name}
 }
+
+//в дженериках описана работа с интерфейсом, как с огрнаичителем возвращаемых типов
