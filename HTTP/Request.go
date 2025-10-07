@@ -11,9 +11,13 @@ func ExampleRequest(request *http.Request) {
 	//request.URL.Path - возвращает путь
 	//request.URL.Query().Get("parma1") - получение гет параметра
 	//request.Cookie("cookie1") - печенье OREO
+	//request.URL.Query() - Получает сразу всe параметры, записывает в строковую мапу
+
+	//request.PathValue("pathValue1") - получаем значение из подстановочной переменной {} в самом пути хэндлера пишем путь вида /api/v1/test/{pathValue1}
 
 	//request.ParseForm()
-	//request.FormValue('param1') - получение post параметра
+	//request.FormValue("param1") - возвращает первое значение параметра с указанным именем. При этом может быть возвращён как POST, так и GET-параметр, но поиск начинается с POST.
+	//request.PostFormValue("param1") - отличается от предыдущего тем, что ищет только среди параметров POST-запроса.
 }
 
 /*

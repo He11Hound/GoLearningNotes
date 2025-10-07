@@ -9,5 +9,5 @@ import (
 //Команда запускает файл genconstants.go и передаёт параметры
 
 func main() {
-	HTTP.ExampleSimpleHttpServer()
+	HTTP.ProductionServer()
 }
