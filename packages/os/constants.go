@@ -1,4 +1,4 @@
-package structures
+package os
 
 /*
 === КОНСТАНТЫ ПАКЕТА OS ===
